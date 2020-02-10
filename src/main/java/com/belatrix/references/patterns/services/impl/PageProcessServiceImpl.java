@@ -26,7 +26,7 @@ public class PageProcessServiceImpl implements PageProcessService {
 
     @Value("${text.input.reader}")
     private String path;
-    private ExecutorService executor = Executors.newCachedThreadPool();
+    private ExecutorService executor;
     private final FileReaderService fileReaderService;
     private final FileWriterService fileWriterService;
 
@@ -38,6 +38,7 @@ public class PageProcessServiceImpl implements PageProcessService {
     @Override
     public void pageProcessInBackGround() throws BusinessException, TechnicalException {
         log.info("Processing start {}", new Date());
+        executor = Executors.newCachedThreadPool();
         try {
             List<URL> pages = fileReaderService.readFilesFromDisk(path);
             pages.parallelStream().forEach( x ->
@@ -60,14 +61,13 @@ public class PageProcessServiceImpl implements PageProcessService {
                 }catch (Exception e ){
                     log.error("Error executing: {}", e.getMessage());
                 }
-                finally {
-                    //executor.shutdown();
-                    //executorService.shutdown();
-                }
             });
         }
         catch (Exception e ){
             log.error("Error : {}", e.getMessage());
+        }
+        finally {
+            executor.shutdown();
         }
         log.info("Processing finish {}", new Date());
     }
