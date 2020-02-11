@@ -22,7 +22,7 @@ public class CommandTextMatchImpl implements CommandTextMatch {
 
 
     @Override
-    public List<String> call() throws Exception {
+    public List<String> call() {
         return Arrays.stream(text.split(FileConstants.DELIMITER))
                 .filter(x -> x.matches(pattern)).distinct().sorted()
                 .collect(Collectors.toList());

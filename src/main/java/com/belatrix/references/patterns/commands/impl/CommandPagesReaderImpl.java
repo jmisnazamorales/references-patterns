@@ -44,7 +44,7 @@ public class CommandPagesReaderImpl implements CommandPagesReader {
                 log.error("Error io {}", e.getMessage());
                 throw new Exception(e.getMessage());
             }
-            return sb.toString();
+            return selectUtilText(sb.toString());
         }
         else{
             throw new Exception("Status no valid : " + status + " for page :" + url);
@@ -61,11 +61,22 @@ public class CommandPagesReaderImpl implements CommandPagesReader {
     }
 
 
-    private String extractUtilText(String completeText){
+    private String selectUtilText(String completeText){
         StringBuilder sb = new StringBuilder();
         final Matcher matcher = FileConstants.TAG_REGEX.matcher(completeText);
         while (matcher.find()) {
             sb.append(matcher.group(1));
+        }
+        String val =completeText.replace(sb.toString(), "") ;
+        return selectUtilTextScript(val);
+        //return completeText.replace(sb.toString(), "") ;
+    }
+
+    private String selectUtilTextScript(String completeText){
+        StringBuilder sb = new StringBuilder();
+        final Matcher matcherScript = FileConstants.TAG_REGEX_SCRIPT.matcher(completeText);
+        while (matcherScript.find()) {
+            sb.append(matcherScript.group(1));
         }
         return sb.toString();
     }

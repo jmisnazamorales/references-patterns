@@ -14,7 +14,9 @@ public final class FileConstants {
 
     public static final String FILE_FAILURES = "failure_urls.txt";
 
-    public static final Pattern TAG_REGEX = Pattern.compile("<body(.+?)</body>", Pattern.CASE_INSENSITIVE);
+    public static final Pattern TAG_REGEX = Pattern.compile("<style>(.+?)</style>", Pattern.DOTALL);
+
+    public static final Pattern TAG_REGEX_SCRIPT = Pattern.compile("<p(.+?)</p>", Pattern.DOTALL);
 
     public static final String PATTERN_TAG = "(?:\\s|^)#[A-Za-z0-9\\-\\.\\_]+(?:\\s|$)";
 }

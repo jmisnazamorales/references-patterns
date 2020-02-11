@@ -1,7 +1,9 @@
 package com.belatrix.references.patterns.services;
 
+import com.belatrix.references.patterns.exceptions.TechnicalException;
 import com.belatrix.references.patterns.services.impl.FileWriterServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -28,8 +30,8 @@ public class FileWriterServiceTest {
     public void writeFilesToDisk(){
         try {
             List<String> words = new ArrayList(){{add("data1");add("data2");add("data3");add("data4");add("data5");}};
-            //fileWriterService.writeOutPutFile(words, "");
-        }catch (Exception  e ){
+            fileWriterService.writeOutPutFile(words, "/");
+        }catch (Exception | TechnicalException e ){
             log.error(e.getMessage());
         }
     }
