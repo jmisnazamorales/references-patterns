@@ -1,7 +1,7 @@
 package com.belatrix.references.patterns.services;
 
-import com.belatrix.references.patterns.commands.concrete.PagesReaderCommandService;
-import com.belatrix.references.patterns.commands.concrete.TextMatchCommandService;
+import com.belatrix.references.patterns.commands.impl.CommandPagesReaderImpl;
+import com.belatrix.references.patterns.commands.impl.CommandTextMatchImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,10 +18,10 @@ class PagesReaderServiceTest {
 
 
     @InjectMocks
-    private PagesReaderCommandService pagesReaderService;
+    private CommandPagesReaderImpl pagesReaderService;
 
     @InjectMocks
-    private TextMatchCommandService textMatchService;
+    private CommandTextMatchImpl textMatchService;
 
     private URL url;
 

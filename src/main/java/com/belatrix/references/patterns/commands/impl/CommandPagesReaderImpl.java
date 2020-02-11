@@ -1,8 +1,8 @@
-package com.belatrix.references.patterns.commands.concrete;
+package com.belatrix.references.patterns.commands.impl;
 
 import com.belatrix.references.patterns.exceptions.TechnicalException;
 import com.belatrix.references.patterns.models.FileConstants;
-import com.belatrix.references.patterns.services.PagesReaderService;
+import com.belatrix.references.patterns.commands.CommandPagesReader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 
@@ -14,11 +14,11 @@ import java.net.URL;
 import java.util.regex.Matcher;
 
 @Slf4j
-public class PagesReaderCommandService implements PagesReaderService {
+public class CommandPagesReaderImpl implements CommandPagesReader {
 
     private URL url;
 
-    public PagesReaderCommandService(URL url){
+    public CommandPagesReaderImpl(URL url){
         this.url = url;
     }
 
@@ -42,7 +42,7 @@ public class PagesReaderCommandService implements PagesReaderService {
                 }
             } catch (IOException e) {
                 log.error("Error io {}", e.getMessage());
-                e.printStackTrace();
+                throw new Exception(e.getMessage());
             }
             return sb.toString();
         }

@@ -1,6 +1,6 @@
-package com.belatrix.references.patterns.commands.concrete;
+package com.belatrix.references.patterns.commands.impl;
 
-import com.belatrix.references.patterns.commands.TextMatchService;
+import com.belatrix.references.patterns.commands.CommandTextMatch;
 import com.belatrix.references.patterns.models.FileConstants;
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class TextMatchCommandService implements TextMatchService {
+public class CommandTextMatchImpl implements CommandTextMatch {
 
     private String text;
 
     private String pattern;
 
-    public TextMatchCommandService(String text, String pattern) {
+    public CommandTextMatchImpl(String text, String pattern) {
         this.text = text;
         this.pattern = pattern;
     }

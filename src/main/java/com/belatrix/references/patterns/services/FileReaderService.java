@@ -1,9 +1,8 @@
 package com.belatrix.references.patterns.services;
 
-import java.net.URL;
-import java.util.List;
+import com.belatrix.references.patterns.models.URLProcess;
 
 public interface FileReaderService{
 
-    List<URL> readFilesFromDisk(String folder);
+    URLProcess readFilesFromDisk(String folder);
 }

@@ -1,5 +1,6 @@
 package com.belatrix.references.patterns.services.impl;
 
+import com.belatrix.references.patterns.models.URLProcess;
 import com.belatrix.references.patterns.services.FileReaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,17 +21,18 @@ import java.util.stream.Stream;
 public class FileReaderServiceImpl implements FileReaderService {
 
     @Override
-    public List<URL> readFilesFromDisk(String folder) {
+    public URLProcess readFilesFromDisk(String folder) {
         log.info("method readFilesFromDisk params {}", folder);
         List<String> filesInDirectory = readFilesInDirectory(folder);
-        List<URL> urls = new ArrayList<>();
+        URLProcess process = new URLProcess();
         filesInDirectory.stream().forEach( x ->
         {
             try (Stream<String> stream = Files.lines(Paths.get(x))){
                 stream.forEach( u -> {
                     try {
-                        urls.add(new URL(u));
+                        process.getSuccessList().add(new URL(u));
                     } catch (MalformedURLException e) {
+                        process.getWrongList().add(u);
                         log.error("error: {}", e.getMessage());
                     }
                 });
@@ -38,7 +40,7 @@ public class FileReaderServiceImpl implements FileReaderService {
                 log.error("Error reading urls {}", e.getMessage());
             }
         });
-        return urls;
+        return process;
     }
 
     /**

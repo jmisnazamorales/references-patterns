@@ -28,7 +28,7 @@ public class FileWriterServiceTest {
     public void writeFilesToDisk(){
         try {
             List<String> words = new ArrayList(){{add("data1");add("data2");add("data3");add("data4");add("data5");}};
-            fileWriterService.writeOutPutFile(words);
+            //fileWriterService.writeOutPutFile(words, "");
         }catch (Exception  e ){
             log.error(e.getMessage());
         }

@@ -29,8 +29,8 @@ public class FileReaderServiceTest {
     public void readFilesFromDisk(){
         try {
             final String directory = "C:\\input_reader";
-            List<URL> text = fileReaderService.readFilesFromDisk(directory);
-            log.info(text.toString());
+            //List<URL> text = fileReaderService.readFilesFromDisk(directory);
+            //log.info(text.toString());
         }catch (Exception  e ){
             log.error(e.getMessage());
         }

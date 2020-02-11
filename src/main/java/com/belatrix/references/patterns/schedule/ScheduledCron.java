@@ -1,8 +1,7 @@
 package com.belatrix.references.patterns.schedule;
 
-import com.belatrix.references.patterns.exceptions.BusinessException;
 import com.belatrix.references.patterns.exceptions.TechnicalException;
-import com.belatrix.references.patterns.commands.PageProcessService;
+import com.belatrix.references.patterns.services.PageProcessService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class ScheduledCron {
     }
 
     @Scheduled(cron = "${cron.expression}")
-    public void processPages() throws TechnicalException, BusinessException {
+    public void processPages() throws Exception, TechnicalException {
         process.pageProcessInBackGround();
     }
 }
