@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 public final class FileConstants {
 
+    private FileConstants(){}
+
     public static final String BREAK = "\n";
 
     public static final String DELIMITER = " ";
